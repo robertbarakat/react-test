@@ -1,6 +1,9 @@
 # Descrizione
 
-Sviluppare un'app come da [sketch](https://precursorapp.com/document/React-test-17592208123629) basata su React. Alla consegna dovranno essere indicate le ore impiegate allo sviluppo.
+Sviluppare un'app in React (vedi [sketch](https://precursorapp.com/document/React-test-17592208123629)) che permetta all'utente di creare un account attraverso un form di registrazione. Una volta creato l'account, l'utente dovrà essere reindirizzato ad una pagina di benvenuto. 
+
+- Il candidato può utilizzare lo _storage_ del browser per il salvataggio dei dati.
+- Alla consegna dovranno essere indicate le ore impiegate allo sviluppo.
 
 # Must have
 
