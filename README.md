@@ -5,7 +5,7 @@ Sviluppare un'app in React che permetta all'utente di creare un account attraver
 - Il candidato può utilizzare lo _storage_ del browser per il salvataggio dei dati simulando una chiamata ad un servizio API.
 - Alla consegna dovranno essere indicate le ore impiegate allo sviluppo.
 
-[Guarda lo sketch](https://precursorapp.com/document/React-test-17592208123629))
+[Guarda lo sketch](https://precursorapp.com/document/React-test-17592208123629)
 
 # Must have
 
