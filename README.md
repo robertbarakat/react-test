@@ -1,9 +1,11 @@
 # Descrizione
 
-Sviluppare un'app in React (vedi [sketch](https://precursorapp.com/document/React-test-17592208123629)) che permetta all'utente di creare un account attraverso un form di registrazione. Una volta creato l'account, l'utente dovrà essere reindirizzato ad una pagina di benvenuto. 
+Sviluppare un'app in React che permetta all'utente di creare un account attraverso un form di registrazione. Una volta creato l'account, l'utente dovrà essere reindirizzato ad una pagina di benvenuto. 
 
 - Il candidato può utilizzare lo _storage_ del browser per il salvataggio dei dati simulando una chiamata ad un servizio API.
 - Alla consegna dovranno essere indicate le ore impiegate allo sviluppo.
+
+[Guarda lo sketch](https://precursorapp.com/document/React-test-17592208123629))
 
 # Must have
 
