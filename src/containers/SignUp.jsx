@@ -21,17 +21,9 @@ class SignUp extends Component {
       invalidTextPswd: '',
       invalidEmail: '',
       invalidTextEmail: '',
-      userLocalStorage: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  componentDidMount() {
-    const { users } = this.props;
-    /* const myLocalStorage = JSON.parse(localStorage.getItem('state'));
-    this.setState({ userLocalStorage: myLocalStorage.users }); */
-    this.setState({ userLocalStorage: users });
   }
 
   handleChange(event) {
@@ -40,10 +32,11 @@ class SignUp extends Component {
 
   handleSubmit() {
     const {
-      name, lastname, email, password, passwordbis, userLocalStorage,
+      name, lastname, email, password, passwordbis,
     } = this.state;
+    const { users } = this.props;
     const { createProfile, id, history } = this.props;
-    const emailCheck = userLocalStorage.filter(item => item.email === email);
+    const emailCheck = users.filter(item => item.email === email);
     if (password !== passwordbis) {
       this.setState({
         invalidpswd: 'invalid',

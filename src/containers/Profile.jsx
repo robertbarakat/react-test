@@ -12,8 +12,6 @@ class Profile extends Component {
 
   componentDidMount() {
     const { match, users } = this.props;
-    /* const getStorage = JSON.parse(localStorage.getItem('state'));
-    const allUsers = getStorage.users.filter(item => item.id === JSON.parse(match.params.id)); */
     const allUsers = users.filter(item => item.id === JSON.parse(match.params.id));
     this.setState({ storage: allUsers[0] });
   }

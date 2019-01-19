@@ -13,16 +13,9 @@ class SignIn extends Component {
       email: '',
       password: '',
       invalidText: '',
-      userLocalStorage: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.checkProfile = this.checkProfile.bind(this);
-  }
-
-  componentDidMount() {
-    /* const myLocalStorage = JSON.parse(localStorage.getItem('state')); */
-    const { users } = this.props;
-    this.setState({ userLocalStorage: users });
   }
 
   handleChange(event) {
@@ -30,9 +23,9 @@ class SignIn extends Component {
   }
 
   checkProfile() {
-    const { email, password, userLocalStorage } = this.state;
-    const { history } = this.props;
-    const profile = userLocalStorage.filter(item => item.email === email
+    const { email, password } = this.state;
+    const { history, users } = this.props;
+    const profile = users.filter(item => item.email === email
      && bcrypt.compareSync(password, item.password));
     if (profile.length !== 0) {
       history.push(`/profile/${profile[0].id}`);
