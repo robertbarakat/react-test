@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import {
-  Col, Button, Form, FormGroup, Label, Input,
+  Col, Button, Form, FormGroup, Label, Input, FormFeedback,
 } from 'reactstrap';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import createProfile from '../actions/createProfile';
 
 class SignUp extends Component {
   constructor(props) {
@@ -12,17 +16,63 @@ class SignUp extends Component {
       email: '',
       password: '',
       passwordbis: '',
+      invalidpswd: '',
+      invalidTextPswd: '',
+      invalidEmail: '',
+      invalidTextEmail: '',
+      userLocalStorage: [],
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    const myLocalStorage = JSON.parse(localStorage.getItem('state'));
+    this.setState({ userLocalStorage: myLocalStorage.users });
+  }
+
+  handleChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+  handleSubmit() {
+    const {
+      name, lastname, email, password, passwordbis, userLocalStorage,
+    } = this.state;
+    const { createProfile, id, history } = this.props;
+    const emailCheck = userLocalStorage.filter(item => item.email === email);
+    if (password !== passwordbis) {
+      this.setState({
+        invalidpswd: 'invalid',
+        invalidTextPswd: 'Attenzione, i due campi password non sono identici',
+      });
+    } else if (emailCheck.length !== 0) {
+      this.setState({
+        invalidEmail: 'invalid',
+        invalidTextEmail: 'Attenzione, questo indirizzo email risulta già registrato',
+      });
+    } else {
+      const data = {
+        id,
+        name,
+        lastname,
+        email,
+        password,
+      };
+      createProfile(data);
+      history.push(`/profile/${id}`);
+    }
   }
 
   render() {
     const {
-      name, lastname, email, password, passwordbis,
+      name, lastname, email, password, passwordbis, invalidpswd, invalidTextPswd,
+      invalidEmail, invalidTextEmail,
     } = this.state;
     return (
       <Col xs={12} sm={{ size: 4, offset: 4 }}>
         <h3 className="mt-3 mb-3 text-center">
-          Inserisci le tue credenziali
+          Compila i campi e premi Invia
         </h3>
         <Form>
           <FormGroup>
@@ -32,6 +82,7 @@ class SignUp extends Component {
               name="name"
               id="Name"
               value={name}
+              onChange={this.handleChange}
               placeholder="Inserisci il tuo nome"
             />
           </FormGroup>
@@ -42,6 +93,7 @@ class SignUp extends Component {
               name="lastname"
               id="Lastname"
               value={lastname}
+              onChange={this.handleChange}
               placeholder="Inserisci il tuo cognome"
             />
           </FormGroup>
@@ -52,8 +104,13 @@ class SignUp extends Component {
               name="email"
               id="Email"
               value={email}
+              onChange={this.handleChange}
               placeholder="Inserisci la tua e-mail"
+              invalid={invalidEmail}
             />
+            <FormFeedback>
+              {invalidTextEmail}
+            </FormFeedback>
           </FormGroup>
           <FormGroup>
             <Label for="Password">Password</Label>
@@ -62,24 +119,41 @@ class SignUp extends Component {
               name="password"
               id="Password"
               value={password}
+              onChange={this.handleChange}
               placeholder="Inserisci la tua password"
+              invalid={invalidpswd}
             />
+            <FormFeedback>
+              {invalidTextPswd}
+            </FormFeedback>
           </FormGroup>
           <FormGroup>
             <Label for="Passwordbis">Inserisci nuovamente la password</Label>
             <Input
-              type="passwordbis"
+              type="password"
               name="passwordbis"
               id="Passwordbis"
               value={passwordbis}
+              onChange={this.handleChange}
               placeholder="Inserisci la password"
+              invalid={invalidpswd}
             />
           </FormGroup>
-          <Button color="primary">Invia</Button>
+          <Button onClick={this.handleSubmit} color="primary">Invia</Button>
         </Form>
       </Col>
     );
   }
 }
 
-export default SignUp;
+function mstp(state) {
+  return {
+    id: state.id,
+  };
+}
+
+function mdtp(dispatch) {
+  return bindActionCreators({ createProfile }, dispatch);
+}
+
+export default withRouter(connect(mstp, mdtp)(SignUp));

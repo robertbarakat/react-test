@@ -17,7 +17,7 @@ const App = () => (
           <Route exact path="/" component={HomeScreen} />
           <Route path="/signup" component={SignUp} />
           <Route path="/signin" component={SignIn} />
-          <Route path="/profile" component={Profile} />
+          <Route path="/profile/:id" component={Profile} />
         </Switch>
       </Row>
     </Container>
