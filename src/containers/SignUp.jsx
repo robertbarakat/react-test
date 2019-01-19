@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   Col, Button, Form, FormGroup, Label, Input, FormFeedback,
 } from 'reactstrap';
+import bcrypt from 'bcryptjs';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -27,8 +28,10 @@ class SignUp extends Component {
   }
 
   componentDidMount() {
-    const myLocalStorage = JSON.parse(localStorage.getItem('state'));
-    this.setState({ userLocalStorage: myLocalStorage.users });
+    const { users } = this.props;
+    /* const myLocalStorage = JSON.parse(localStorage.getItem('state'));
+    this.setState({ userLocalStorage: myLocalStorage.users }); */
+    this.setState({ userLocalStorage: users });
   }
 
   handleChange(event) {
@@ -52,15 +55,18 @@ class SignUp extends Component {
         invalidTextEmail: 'Attenzione, questo indirizzo email risulta già registrato',
       });
     } else {
-      const data = {
-        id,
-        name,
-        lastname,
-        email,
-        password,
-      };
-      createProfile(data);
-      history.push(`/profile/${id}`);
+      const saltRounds = 10;
+      bcrypt.hash(password, saltRounds, (err, hash) => {
+        const data = {
+          id,
+          name,
+          lastname,
+          email,
+          password: hash,
+        };
+        createProfile(data);
+        history.push(`/profile/${id}`);
+      });
     }
   }
 
@@ -149,6 +155,7 @@ class SignUp extends Component {
 function mstp(state) {
   return {
     id: state.id,
+    users: state.users,
   };
 }
 

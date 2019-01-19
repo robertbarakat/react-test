@@ -1,5 +1,5 @@
 const initialState = [{
-  id: 1, name: 'Robert', lastname: 'Barakat', email: 'rob@rob.it', password: 'pswd',
+  id: 1, name: 'Robert', lastname: 'Barakat', email: 'rob@robert.it', password: 'pswd',
 }];
 
 const users = (state = initialState, action) => {

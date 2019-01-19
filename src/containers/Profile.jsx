@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Col } from 'reactstrap';
+import { connect } from 'react-redux';
 
 class Profile extends Component {
   constructor(props) {
@@ -10,9 +11,10 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    const { match } = this.props;
-    const getStorage = JSON.parse(localStorage.getItem('state'));
-    const allUsers = getStorage.users.filter(item => item.id === JSON.parse(match.params.id));
+    const { match, users } = this.props;
+    /* const getStorage = JSON.parse(localStorage.getItem('state'));
+    const allUsers = getStorage.users.filter(item => item.id === JSON.parse(match.params.id)); */
+    const allUsers = users.filter(item => item.id === JSON.parse(match.params.id));
     this.setState({ storage: allUsers[0] });
   }
 
@@ -31,4 +33,8 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+function mstp(state) {
+  return { users: state.users };
+}
+
+export default connect(mstp)(Profile);

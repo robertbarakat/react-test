@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import {
   Col, Button, Form, FormGroup, Label, Input,
 } from 'reactstrap';
+import bcrypt from 'bcryptjs';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class SignIn extends Component {
   constructor(props) {
@@ -18,8 +20,9 @@ class SignIn extends Component {
   }
 
   componentDidMount() {
-    const myLocalStorage = JSON.parse(localStorage.getItem('state'));
-    this.setState({ userLocalStorage: myLocalStorage.users });
+    /* const myLocalStorage = JSON.parse(localStorage.getItem('state')); */
+    const { users } = this.props;
+    this.setState({ userLocalStorage: users });
   }
 
   handleChange(event) {
@@ -30,7 +33,7 @@ class SignIn extends Component {
     const { email, password, userLocalStorage } = this.state;
     const { history } = this.props;
     const profile = userLocalStorage.filter(item => item.email === email
-     && item.password === password);
+     && bcrypt.compareSync(password, item.password));
     if (profile.length !== 0) {
       history.push(`/profile/${profile[0].id}`);
     } else {
@@ -74,4 +77,8 @@ class SignIn extends Component {
   }
 }
 
-export default withRouter(SignIn);
+function mstp(state) {
+  return { users: state.users };
+}
+
+export default withRouter(connect(mstp)(SignIn));
