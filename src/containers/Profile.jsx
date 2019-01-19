@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Col } from 'reactstrap';
 import { connect } from 'react-redux';
+import StyledHeading2 from '../myStyledComponents';
 
 class Profile extends Component {
   constructor(props) {
@@ -20,12 +21,12 @@ class Profile extends Component {
     const { storage } = this.state;
     return (
       <Col xs={12} sm={{ size: 4, offset: 4 }}>
-        <h3 className="mt-3 mb-3 text-center">
+        <StyledHeading2>
           Buongiorno&nbsp;
           {storage.name}
           &nbsp;
           {storage.lastname}
-        </h3>
+        </StyledHeading2>
       </Col>
     );
   }

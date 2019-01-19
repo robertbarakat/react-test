@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import createProfile from '../actions/createProfile';
+import StyledHeading2 from '../myStyledComponents';
 
 class SignUp extends Component {
   constructor(props) {
@@ -70,9 +71,9 @@ class SignUp extends Component {
     } = this.state;
     return (
       <Col xs={12} sm={{ size: 4, offset: 4 }}>
-        <h3 className="mt-3 mb-3 text-center">
+        <StyledHeading2>
           Compila i campi e premi Invia
-        </h3>
+        </StyledHeading2>
         <Form>
           <FormGroup>
             <Label for="Name">Nome</Label>

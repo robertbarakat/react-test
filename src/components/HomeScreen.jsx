@@ -1,12 +1,13 @@
 import React from 'react';
 import { Col, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import StyledHeading2 from '../myStyledComponents';
 
 const HomeScreen = () => (
   <Col className="text-center">
-    <h2 className="mt-3">
+    <StyledHeading2>
       Buongiorno
-    </h2>
+    </StyledHeading2>
     <p className="mt-5">
       Se sei un utente registrato clicca sul pulsante accedi, altrimenti registrati
     </p>

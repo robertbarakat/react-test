@@ -5,6 +5,7 @@ import {
 import bcrypt from 'bcryptjs';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import StyledHeading2 from '../myStyledComponents';
 
 class SignIn extends Component {
   constructor(props) {
@@ -38,9 +39,9 @@ class SignIn extends Component {
     const { invalidText } = this.state;
     return (
       <Col xs={12} sm={{ size: 4, offset: 4 }}>
-        <h3 className="mt-3 mb-3 text-center">
+        <StyledHeading2>
           Registrati
-        </h3>
+        </StyledHeading2>
         <Form>
           <FormGroup>
             <Label for="Email">Email</Label>
