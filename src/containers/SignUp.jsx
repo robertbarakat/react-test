@@ -6,6 +6,7 @@ import bcrypt from 'bcryptjs';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import createProfile from '../actions/createProfile';
 import StyledHeading2 from '../myStyledComponents';
 
@@ -156,5 +157,16 @@ function mstp(state) {
 function mdtp(dispatch) {
   return bindActionCreators({ createProfile }, dispatch);
 }
+
+SignUp.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number,
+    PropTypes.string]))),
+};
+
+SignUp.defaultProps = {
+  users: [{
+    id: 1, name: 'Robert', lastname: 'Barakat', email: 'rob@robert.it', password: 'pswd',
+  }],
+};
 
 export default withRouter(connect(mstp, mdtp)(SignUp));

@@ -5,6 +5,7 @@ import {
 import bcrypt from 'bcryptjs';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import StyledHeading2 from '../myStyledComponents';
 
 class SignIn extends Component {
@@ -74,5 +75,16 @@ class SignIn extends Component {
 function mstp(state) {
   return { users: state.users };
 }
+
+SignIn.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number,
+    PropTypes.string]))),
+};
+
+SignIn.defaultProps = {
+  users: [{
+    id: 1, name: 'Robert', lastname: 'Barakat', email: 'rob@robert.it', password: 'pswd',
+  }],
+};
 
 export default withRouter(connect(mstp)(SignIn));

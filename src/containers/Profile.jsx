@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Col } from 'reactstrap';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import StyledHeading2 from '../myStyledComponents';
 
 class Profile extends Component {
@@ -35,5 +36,16 @@ class Profile extends Component {
 function mstp(state) {
   return { users: state.users };
 }
+
+Profile.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number,
+    PropTypes.string]))),
+};
+
+Profile.defaultProps = {
+  users: [{
+    id: 1, name: 'Robert', lastname: 'Barakat', email: 'rob@robert.it', password: 'pswd',
+  }],
+};
 
 export default connect(mstp)(Profile);
