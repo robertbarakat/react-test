@@ -6,10 +6,11 @@ import bcrypt from 'bcryptjs';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import createProfile from '../actions/createProfile';
 import toggleLog from '../actions/toggleLog';
-import StyledHeading2 from '../styledComponents/myStyledHeading';
+import StyledHeading3 from '../styledComponents/myStyledHeading';
 import StyledButton from '../styledComponents/myStyledButton';
 
 class SignUp extends Component {
@@ -76,30 +77,32 @@ class SignUp extends Component {
     } = this.state;
     return (
       <Col xs={12} sm={{ size: 4, offset: 4 }}>
-        <StyledHeading2>
-          Compila i campi e premi Invia
-        </StyledHeading2>
+        <StyledHeading3>
+          <FormattedMessage id="signup.header" />
+        </StyledHeading3>
         <Form>
           <FormGroup>
-            <Label for="Name">Nome</Label>
+            <Label for="Name">
+              <FormattedMessage id="signup.name" />
+            </Label>
             <Input
               type="text"
               name="name"
               id="Name"
               value={name}
               onChange={this.handleChange}
-              placeholder="Inserisci il tuo nome"
             />
           </FormGroup>
           <FormGroup>
-            <Label for="Lastname">Cognome</Label>
+            <Label for="Lastname">
+              <FormattedMessage id="signup.lastName" />
+            </Label>
             <Input
               type="text"
               name="lastname"
               id="Lastname"
               value={lastname}
               onChange={this.handleChange}
-              placeholder="Inserisci il tuo cognome"
             />
           </FormGroup>
           <FormGroup>
@@ -110,7 +113,6 @@ class SignUp extends Component {
               id="Email"
               value={email}
               onChange={this.handleChange}
-              placeholder="Inserisci la tua e-mail"
               invalid={invalidEmail}
             />
             <FormFeedback>
@@ -125,7 +127,6 @@ class SignUp extends Component {
               id="Password"
               value={password}
               onChange={this.handleChange}
-              placeholder="Inserisci la tua password"
               invalid={invalidpswd}
             />
             <FormFeedback>
@@ -133,18 +134,21 @@ class SignUp extends Component {
             </FormFeedback>
           </FormGroup>
           <FormGroup>
-            <Label for="Passwordbis">Inserisci nuovamente la password</Label>
+            <Label for="Passwordbis">
+              <FormattedMessage id="signup.repeatPswd" />
+            </Label>
             <Input
               type="password"
               name="passwordbis"
               id="Passwordbis"
               value={passwordbis}
               onChange={this.handleChange}
-              placeholder="Inserisci la password"
               invalid={invalidpswd}
             />
           </FormGroup>
-          <StyledButton onClick={this.handleSubmit} primary>Invia</StyledButton>
+          <StyledButton onClick={this.handleSubmit} primary className="mb-5">
+            <FormattedMessage id="signup.SubmitBtn" />
+          </StyledButton>
         </Form>
       </Col>
     );

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Col } from 'reactstrap';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import StyledHeading2 from '../styledComponents/myStyledHeading';
+import StyledHeading3 from '../styledComponents/myStyledHeading';
 
 class Profile extends Component {
   constructor(props) {
@@ -22,15 +23,15 @@ class Profile extends Component {
     const { storage } = this.state;
     const { logStatus, history } = this.props;
     if (!logStatus) {
-      history.push('/');
+      history.push('/signin');
     } return (
       <Col xs={12} sm={{ size: 4, offset: 4 }}>
-        <StyledHeading2>
-          Buongiorno&nbsp;
+        <StyledHeading3>
+          <FormattedMessage id="profile.Greeting" />
           {storage.name}
           &nbsp;
           {storage.lastname}
-        </StyledHeading2>
+        </StyledHeading3>
       </Col>
     );
   }

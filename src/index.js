@@ -4,10 +4,15 @@ import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { addLocaleData } from 'react-intl';
+import en from 'react-intl/locale-data/en';
+import it from 'react-intl/locale-data/it';
 import allReducers from './reducers';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+addLocaleData([...en, ...it]);
 
 // Function to create localStorage item named 'state' that contains redux state
 function saveToLocalStorage(state) {

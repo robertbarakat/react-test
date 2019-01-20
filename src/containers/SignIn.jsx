@@ -5,10 +5,11 @@ import {
 import bcrypt from 'bcryptjs';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import toggleLog from '../actions/toggleLog';
-import StyledHeading2 from '../styledComponents/myStyledHeading';
+import StyledHeading3 from '../styledComponents/myStyledHeading';
 import StyledButton from '../styledComponents/myStyledButton';
 
 class SignIn extends Component {
@@ -44,9 +45,9 @@ class SignIn extends Component {
     const { invalidText } = this.state;
     return (
       <Col xs={12} sm={{ size: 4, offset: 4 }}>
-        <StyledHeading2>
-          Inserisci le tue credenziali e premi Invia
-        </StyledHeading2>
+        <StyledHeading3>
+          <FormattedMessage id="signin.header" />
+        </StyledHeading3>
         <Form>
           <FormGroup>
             <Label for="Email">Email</Label>
@@ -55,7 +56,6 @@ class SignIn extends Component {
               name="email"
               id="Email"
               onChange={this.handleChange}
-              placeholder="Inserisci la tua e-mail"
             />
           </FormGroup>
           <FormGroup>
@@ -65,11 +65,12 @@ class SignIn extends Component {
               name="password"
               id="Password"
               onChange={this.handleChange}
-              placeholder="Inserisci la tua password"
             />
           </FormGroup>
           <p className="text-danger">{ invalidText }</p>
-          <StyledButton primary onClick={this.checkProfile}>Invia</StyledButton>
+          <StyledButton primary onClick={this.checkProfile}>
+            <FormattedMessage id="signin.SubmitBtn" />
+          </StyledButton>
         </Form>
       </Col>
     );

@@ -15,7 +15,7 @@ class LogComponent extends Component {
   render() {
     const { logStatus, toggleLog } = this.props;
     const logButton = (logStatus) ? (
-      <Button color="danger" onClick={() => toggleLog(false)}>Logout</Button>) : <Button color="success" onClick={() => this.signInRedirect()}>Login</Button>;
+      <Button color="danger" className="mr-2" onClick={() => toggleLog(false)}>Logout</Button>) : <Button color="success" className="mr-2" onClick={() => this.signInRedirect()}>Login</Button>;
     return (
       <div>
         {logButton}
