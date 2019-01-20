@@ -3,9 +3,11 @@ import {
   Col, Button, Form, FormGroup, Label, Input,
 } from 'reactstrap';
 import bcrypt from 'bcryptjs';
+import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import toggleLog from '../actions/toggleLog';
 import StyledHeading2 from '../myStyledComponents';
 
 class SignIn extends Component {
@@ -26,10 +28,11 @@ class SignIn extends Component {
 
   checkProfile() {
     const { email, password } = this.state;
-    const { history, users } = this.props;
+    const { history, users, toggleLog } = this.props;
     const profile = users.filter(item => item.email === email
      && bcrypt.compareSync(password, item.password));
     if (profile.length !== 0) {
+      toggleLog(true);
       history.push(`/profile/${profile[0].id}`);
     } else {
       this.setState({ invalidText: 'Email o password invalidi, riprova' });
@@ -41,7 +44,7 @@ class SignIn extends Component {
     return (
       <Col xs={12} sm={{ size: 4, offset: 4 }}>
         <StyledHeading2>
-          Registrati
+          Inserisci le tue credenziali e premi Invia
         </StyledHeading2>
         <Form>
           <FormGroup>
@@ -76,6 +79,10 @@ function mstp(state) {
   return { users: state.users };
 }
 
+function mdtp(dispatch) {
+  return bindActionCreators({ toggleLog }, dispatch);
+}
+
 SignIn.propTypes = {
   users: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number,
     PropTypes.string]))),
@@ -87,4 +94,4 @@ SignIn.defaultProps = {
   }],
 };
 
-export default withRouter(connect(mstp)(SignIn));
+export default withRouter(connect(mstp, mdtp)(SignIn));

@@ -20,7 +20,10 @@ class Profile extends Component {
 
   render() {
     const { storage } = this.state;
-    return (
+    const { logStatus, history } = this.props;
+    if (!logStatus) {
+      history.push('/');
+    } return (
       <Col xs={12} sm={{ size: 4, offset: 4 }}>
         <StyledHeading2>
           Buongiorno&nbsp;
@@ -34,15 +37,20 @@ class Profile extends Component {
 }
 
 function mstp(state) {
-  return { users: state.users };
+  return {
+    users: state.users,
+    logStatus: state.logStatus,
+  };
 }
 
 Profile.propTypes = {
+  logStatus: PropTypes.bool,
   users: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number,
     PropTypes.string]))),
 };
 
 Profile.defaultProps = {
+  logStatus: false,
   users: [{
     id: 1, name: 'Robert', lastname: 'Barakat', email: 'rob@robert.it', password: 'pswd',
   }],

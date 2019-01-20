@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import createProfile from '../actions/createProfile';
+import toggleLog from '../actions/toggleLog';
 import StyledHeading2 from '../myStyledComponents';
 
 class SignUp extends Component {
@@ -19,9 +20,9 @@ class SignUp extends Component {
       email: '',
       password: '',
       passwordbis: '',
-      invalidpswd: '',
+      invalidpswd: false,
       invalidTextPswd: '',
-      invalidEmail: '',
+      invalidEmail: false,
       invalidTextEmail: '',
     };
     this.handleChange = this.handleChange.bind(this);
@@ -34,22 +35,24 @@ class SignUp extends Component {
 
   handleSubmit() {
     const {
-      name, lastname, email, password, passwordbis,
+      name, lastname, email, password, passwordbis, invalidEmail, invalidpswd,
     } = this.state;
-    const { users } = this.props;
-    const { createProfile, id, history } = this.props;
+    const {
+      createProfile, toggleLog, id, history, users,
+    } = this.props;
     const emailCheck = users.filter(item => item.email === email);
     if (password !== passwordbis) {
       this.setState({
-        invalidpswd: 'invalid',
+        invalidpswd: !invalidpswd,
         invalidTextPswd: 'Attenzione, i due campi password non sono identici',
       });
     } else if (emailCheck.length !== 0) {
       this.setState({
-        invalidEmail: 'invalid',
+        invalidEmail: !invalidEmail,
         invalidTextEmail: 'Attenzione, questo indirizzo email risulta già registrato',
       });
     } else {
+      toggleLog(true);
       const saltRounds = 10;
       bcrypt.hash(password, saltRounds, (err, hash) => {
         const data = {
@@ -151,11 +154,12 @@ function mstp(state) {
   return {
     id: state.id,
     users: state.users,
+    logStatus: state.logStatus,
   };
 }
 
 function mdtp(dispatch) {
-  return bindActionCreators({ createProfile }, dispatch);
+  return bindActionCreators({ createProfile, toggleLog }, dispatch);
 }
 
 SignUp.propTypes = {

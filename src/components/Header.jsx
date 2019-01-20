@@ -9,6 +9,7 @@ import {
   NavLink,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import LogComponent from '../containers/LogComponent';
 
 class Header extends Component {
   constructor(props) {
@@ -37,6 +38,9 @@ class Header extends Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
+              <NavItem>
+                <LogComponent />
+              </NavItem>
               <NavItem>
                 <NavLink href="/">ITA</NavLink>
               </NavItem>
