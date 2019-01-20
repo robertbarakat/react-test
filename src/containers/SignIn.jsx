@@ -68,7 +68,7 @@ class SignIn extends Component {
             />
           </FormGroup>
           <p className="text-danger">{ invalidText }</p>
-          <StyledButton primary onClick={this.checkProfile}>
+          <StyledButton primary type="button" onClick={this.checkProfile}>
             <FormattedMessage id="signin.SubmitBtn" />
           </StyledButton>
         </Form>
@@ -87,13 +87,7 @@ function mdtp(dispatch) {
 
 SignIn.propTypes = {
   users: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number,
-    PropTypes.string]))),
-};
-
-SignIn.defaultProps = {
-  users: [{
-    id: 1, name: 'Robert', lastname: 'Barakat', email: 'rob@robert.it', password: 'pswd',
-  }],
+    PropTypes.string]))).isRequired,
 };
 
 export default withRouter(connect(mstp, mdtp)(SignIn));

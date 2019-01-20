@@ -146,7 +146,7 @@ class SignUp extends Component {
               invalid={invalidpswd}
             />
           </FormGroup>
-          <StyledButton onClick={this.handleSubmit} primary className="mb-5">
+          <StyledButton type="button" onClick={this.handleSubmit} primary className="mb-5">
             <FormattedMessage id="signup.SubmitBtn" />
           </StyledButton>
         </Form>
@@ -169,13 +169,7 @@ function mdtp(dispatch) {
 
 SignUp.propTypes = {
   users: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number,
-    PropTypes.string]))),
-};
-
-SignUp.defaultProps = {
-  users: [{
-    id: 1, name: 'Robert', lastname: 'Barakat', email: 'rob@robert.it', password: 'pswd',
-  }],
+    PropTypes.string]))).isRequired,
 };
 
 export default withRouter(connect(mstp, mdtp)(SignUp));

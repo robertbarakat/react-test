@@ -1,4 +1,4 @@
-const initialState = 2;
+const initialState = 1;
 
 const id = (state = initialState, action) => {
   switch (action.type) {

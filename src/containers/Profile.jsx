@@ -47,14 +47,11 @@ function mstp(state) {
 Profile.propTypes = {
   logStatus: PropTypes.bool,
   users: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number,
-    PropTypes.string]))),
+    PropTypes.string]))).isRequired,
 };
 
 Profile.defaultProps = {
   logStatus: false,
-  users: [{
-    id: 1, name: 'Robert', lastname: 'Barakat', email: 'rob@robert.it', password: 'pswd',
-  }],
 };
 
 export default connect(mstp)(Profile);
