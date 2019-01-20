@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Col, Button, Form, FormGroup, Label, Input,
+  Col, Form, FormGroup, Label, Input,
 } from 'reactstrap';
 import bcrypt from 'bcryptjs';
 import { bindActionCreators } from 'redux';
@@ -8,7 +8,8 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import toggleLog from '../actions/toggleLog';
-import StyledHeading2 from '../myStyledComponents';
+import StyledHeading2 from '../styledComponents/myStyledHeading';
+import StyledButton from '../styledComponents/myStyledButton';
 
 class SignIn extends Component {
   constructor(props) {
@@ -68,7 +69,7 @@ class SignIn extends Component {
             />
           </FormGroup>
           <p className="text-danger">{ invalidText }</p>
-          <Button color="primary" onClick={this.checkProfile}>Invia</Button>
+          <StyledButton primary onClick={this.checkProfile}>Invia</StyledButton>
         </Form>
       </Col>
     );

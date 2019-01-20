@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Col } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import StyledHeading2 from '../myStyledComponents';
+import StyledHeading2 from '../styledComponents/myStyledHeading';
 
 class Profile extends Component {
   constructor(props) {

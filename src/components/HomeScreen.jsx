@@ -1,7 +1,8 @@
 import React from 'react';
-import { Col, Button } from 'reactstrap';
+import { Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import StyledHeading2 from '../myStyledComponents';
+import StyledHeading2 from '../styledComponents/myStyledHeading';
+import StyledButton from '../styledComponents/myStyledButton';
 
 const HomeScreen = () => (
   <Col className="text-center">
@@ -12,10 +13,10 @@ const HomeScreen = () => (
       Se sei un utente registrato clicca sul pulsante accedi, altrimenti registrati
     </p>
     <Link to="/signin">
-      <Button color="success" className="mt-5 mr-2">Accedi</Button>
+      <StyledButton className="mt-5 mr-2">Accedi</StyledButton>
     </Link>
     <Link to="/signup">
-      <Button color="info" className="mt-5 ml-2">Registrati</Button>
+      <StyledButton primary className="mt-5 ml-2">Iscriviti</StyledButton>
     </Link>
   </Col>
 );

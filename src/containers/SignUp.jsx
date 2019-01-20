@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Col, Button, Form, FormGroup, Label, Input, FormFeedback,
+  Col, Form, FormGroup, Label, Input, FormFeedback,
 } from 'reactstrap';
 import bcrypt from 'bcryptjs';
 import { bindActionCreators } from 'redux';
@@ -9,7 +9,8 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import createProfile from '../actions/createProfile';
 import toggleLog from '../actions/toggleLog';
-import StyledHeading2 from '../myStyledComponents';
+import StyledHeading2 from '../styledComponents/myStyledHeading';
+import StyledButton from '../styledComponents/myStyledButton';
 
 class SignUp extends Component {
   constructor(props) {
@@ -143,7 +144,7 @@ class SignUp extends Component {
               invalid={invalidpswd}
             />
           </FormGroup>
-          <Button onClick={this.handleSubmit} color="primary">Invia</Button>
+          <StyledButton onClick={this.handleSubmit} primary>Invia</StyledButton>
         </Form>
       </Col>
     );
