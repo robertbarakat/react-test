@@ -9,6 +9,7 @@ import SignIn from './containers/SignIn';
 import SignUp from './containers/SignUp';
 import Profile from './containers/Profile';
 import HomeScreen from './components/HomeScreen';
+import reqAuth from './hoc/reqAuth';
 
 class App extends Component {
   constructor(props) {
@@ -43,7 +44,7 @@ class App extends Component {
                 <Route exact path="/" component={HomeScreen} />
                 <Route path="/signup" component={SignUp} />
                 <Route path="/signin" component={SignIn} />
-                <Route path="/profile/:id" component={Profile} />
+                <Route path="/profile/:id" component={reqAuth(Profile)} />
               </Switch>
             </Row>
           </Container>

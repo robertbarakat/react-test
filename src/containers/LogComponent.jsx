@@ -12,10 +12,16 @@ class LogComponent extends Component {
     history.push('/signin');
   }
 
+  logOut() {
+    const { history, toggleLog } = this.props;
+    toggleLog(false);
+    history.push('/signin');
+  }
+
   render() {
-    const { logStatus, toggleLog } = this.props;
+    const { logStatus } = this.props;
     const logButton = (logStatus) ? (
-      <Button color="danger" className="mr-2" onClick={() => toggleLog(false)}>Logout</Button>) : <Button color="success" className="mr-2" onClick={() => this.signInRedirect()}>Login</Button>;
+      <Button color="danger" className="mr-2" onClick={() => this.logOut()}>Logout</Button>) : <Button color="success" className="mr-2" onClick={() => this.signInRedirect()}>Login</Button>;
     return (
       <div>
         {logButton}

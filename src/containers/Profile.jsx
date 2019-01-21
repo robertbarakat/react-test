@@ -21,10 +21,7 @@ class Profile extends Component {
 
   render() {
     const { storage } = this.state;
-    const { logStatus, history } = this.props;
-    if (!logStatus) {
-      history.push('/signin');
-    } return (
+    return (
       <Col xs={12} sm={{ size: 4, offset: 4 }}>
         <StyledHeading3>
           <FormattedMessage id="profile.Greeting" />
@@ -40,18 +37,12 @@ class Profile extends Component {
 function mstp(state) {
   return {
     users: state.users,
-    logStatus: state.logStatus,
   };
 }
 
 Profile.propTypes = {
-  logStatus: PropTypes.bool,
   users: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number,
     PropTypes.string]))).isRequired,
-};
-
-Profile.defaultProps = {
-  logStatus: false,
 };
 
 export default connect(mstp)(Profile);
