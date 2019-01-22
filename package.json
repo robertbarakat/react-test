@@ -67,7 +67,6 @@
   ],
   "devDependencies": {
     "@babel/core": "^7.2.2",
-    "babel-loader": "^8.0.5",
     "eslint-config-airbnb": "^17.1.0",
     "node-gyp": "^3.8.0",
     "@storybook/react": "^4.1.7",
